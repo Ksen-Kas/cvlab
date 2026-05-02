@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CV-LAB — поиск работы, который работает</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --black: #111;
+      --gray-dark: #2a2a2a;
+      --gray: #555;
+      --gray-light: #888;
+      --gray-pale: #bbb;
+      --border: #e8e8e8;
+      --bg-soft: #f7f7f5;
+      --accent: #5b6ef5;
+      --accent-light: #eeeffe;
+      --green: #22c55e;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      color: var(--black);
+      line-height: 1.6;
+      background: #fff;
+    }
+
+    /* NAV */
+    nav {
+      padding: 18px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      font-size: 1rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--black);
+      text-decoration: none;
+    }
+    .logo .dot { color: var(--accent); }
+    .nav-cta {
+      background: var(--black);
+      color: white;
+      padding: 9px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 600;
+      transition: opacity 0.2s;
+    }
+    .nav-cta:hover { opacity: 0.75; }
+
+    /* HERO */
+    .hero {
+      padding: 80px 40px 72px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .ai-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--accent-light);
+      color: var(--accent);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 20px;
+      margin-bottom: 28px;
+    }
+    .ai-tag::before { content: "✦"; font-size: 0.7rem; }
+    h1 {
+      font-size: clamp(2.1rem, 5.5vw, 3.4rem);
+      font-weight: 800;
+      line-height: 1.12;
+      letter-spacing: -0.04em;
+      margin-bottom: 22px;
+    }
+    h1 .accent { color: var(--accent); }
+    .hero-sub {
+      font-size: 1.1rem;
+      color: var(--gray);
+      max-width: 520px;
+      margin-bottom: 36px;
+      line-height: 1.75;
+    }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+    .btn-primary {
+      background: var(--black);
+      color: white;
+      padding: 13px 26px;
+      border-radius: 9px;
+      text-decoration: none;
+      font-size: 0.97rem;
+      font-weight: 700;
+      transition: opacity 0.2s;
+    }
+    .btn-primary:hover { opacity: 0.75; }
+    .btn-link {
+      color: var(--gray);
+      text-decoration: none;
+      font-size: 0.92rem;
+      font-weight: 500;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 1px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .btn-link:hover { color: var(--black); border-color: var(--gray); }
+
+    /* DIVIDER */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 0 40px;
+    }
+
+    /* SECTION */
+    .section { padding: 72px 40px; max-width: 860px; margin: 0 auto; }
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gray-pale);
+      margin-bottom: 10px;
+    }
+    h2 {
+      font-size: clamp(1.6rem, 3.5vw, 2.3rem);
+      font-weight: 800;
+      letter-spacing: -0.035em;
+      margin-bottom: 14px;
+      line-height: 1.2;
+    }
+    .section-sub {
+      font-size: 1rem;
+      color: var(--gray);
+      max-width: 520px;
+      margin-bottom: 48px;
+      line-height: 1.75;
+    }
+
+    /* PAIN */
+    .pain-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 36px;
+    }
+    @media (max-width: 580px) { .pain-list { grid-template-columns: 1fr; } }
+    .pain-item {
+      background: var(--bg-soft);
+      border-radius: 10px;
+      padding: 18px 20px;
+      font-size: 0.93rem;
+      color: var(--gray-dark);
+      line-height: 1.6;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+    .pain-item .ei { flex-shrink: 0; margin-top: 1px; }
+
+    /* WHAT */
+    .what-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+    @media (max-width: 600px) { .what-row { grid-template-columns: 1fr; } }
+    .what-text p { font-size: 0.96rem; color: var(--gray-dark); line-height: 1.8; margin-bottom: 14px; }
+    .what-text p:last-child { margin-bottom: 0; }
+    .what-aside { display: flex; flex-direction: column; gap: 16px; }
+    .aside-card {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+    }
+    .aside-card .num {
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .aside-card .lbl { font-size: 0.83rem; color: var(--gray-light); }
+
+    /* STEPS — the main block */
+    .steps-intro {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+    .steps-intro-left {}
+    .steps-intro-right {
+      font-size: 0.83rem;
+      color: var(--gray-light);
+      max-width: 220px;
+      text-align: right;
+      line-height: 1.55;
+    }
+
+    .steps { display: flex; flex-direction: column; }
+    .step {
+      display: grid;
+      grid-template-columns: 36px 1fr;
+      gap: 20px;
+      padding: 28px 0;
+      border-top: 1px solid var(--border);
+    }
+    .step:last-child { border-bottom: 1px solid var(--border); }
+    .step-num-wrap { padding-top: 3px; }
+    .step-num {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--bg-soft);
+      color: var(--gray-light);
+      font-size: 0.8rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      letter-spacing: -0.02em;
+    }
+    .step-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 8px;
+      flex-wrap: wrap;
+    }
+    .step-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: -0.025em;
+    }
+    .step-time {
+      font-size: 0.75rem;
+      color: var(--gray-pale);
+      font-weight: 500;
+      white-space: nowrap;
+    }
+    .step-desc { font-size: 0.9rem; color: var(--gray); line-height: 1.72; }
+    .step-who {
+      margin-top: 10px;
+      font-size: 0.78rem;
+      color: var(--gray-light);
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .step-who span {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .dot-you { color: var(--accent); }
+    .dot-me { color: var(--green); }
+
+    /* AI */
+    .ai-section {
+      background: var(--bg-soft);
+      border-radius: 16px;
+      padding: 40px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+    @media (max-width: 600px) { .ai-section { grid-template-columns: 1fr; } }
+    .ai-section h3 {
+      font-size: 1.3rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 14px;
+    }
+    .ai-section p { font-size: 0.93rem; color: var(--gray-dark); line-height: 1.75; margin-bottom: 10px; }
+    .ai-section p:last-child { margin-bottom: 0; }
+    .ai-points { display: flex; flex-direction: column; gap: 12px; }
+    .ai-point {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      font-size: 0.88rem;
+      color: var(--gray-dark);
+      line-height: 1.6;
+    }
+    .ai-point .mark { color: var(--accent); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+
+    /* CTA */
+    .cta-block {
+      background: var(--black);
+      color: white;
+      border-radius: 18px;
+      padding: 56px 48px;
+      text-align: center;
+    }
+    .cta-block h2 { color: white; margin-bottom: 14px; }
+    .cta-block p { color: rgba(255,255,255,0.55); font-size: 1rem; max-width: 480px; margin: 0 auto 32px; line-height: 1.75; }
+    .cta-block .btn-white {
+      background: white;
+      color: var(--black);
+      padding: 14px 30px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-size: 0.97rem;
+      font-weight: 700;
+      display: inline-block;
+      transition: opacity 0.2s;
+    }
+    .cta-block .btn-white:hover { opacity: 0.85; }
+    .cta-note { margin-top: 16px; font-size: 0.8rem; color: rgba(255,255,255,0.3); }
+
+    footer {
+      padding: 28px 40px;
+      text-align: center;
+      font-size: 0.82rem;
+      color: var(--gray-pale);
+      border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 600px) {
+      nav, .divider { padding-left: 20px; padding-right: 20px; }
+      .hero { padding: 56px 20px 56px; }
+      .section { padding: 56px 20px; }
+      .cta-block { padding: 36px 24px; }
+      footer { padding: 24px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="logo">CV<span class="dot">·</span>LAB</a>
+  <a href="#contact" class="nav-cta">Поговорить</a>
+</nav>
+
+<div class="hero">
+  <div class="ai-tag">AI-first карьерный консалтинг</div>
+  <h1>Поиск работы,<br>который <span class="accent">приносит результат</span></h1>
+  <p class="hero-sub">
+    Работаю с твоим опытом системно — от честного разбора ситуации до первых офферов.
+    Не советами, не шаблонами. Индивидуально и прозрачно.
+  </p>
+  <div class="hero-actions">
+    <a href="#steps" class="btn-primary">Посмотреть как это устроено</a>
+    <a href="#contact" class="btn-link">Или сразу поговорить →</a>
+  </div>
+</div>
+
+<hr class="divider" />
+
+<!-- PAIN -->
+<div class="section">
+  <div class="section-label">Знакомо?</div>
+  <h2>Когда поиск<br>буксует</h2>
+  <div class="pain-list">
+    <div class="pain-item"><span class="ei">📭</span>Откликаешься — в ответ тишина или автоотказ. Непонятно почему.</div>
+    <div class="pain-item"><span class="ei">🪞</span>Опыт есть, но как о нём говорить — неясно. Резюме не передаёт главного.</div>
+    <div class="pain-item"><span class="ei">🗺️</span>Куда двигаться — тоже непонятно. Рынок изменился, стратегии нет.</div>
+    <div class="pain-item"><span class="ei">⏳</span>Поиск тянется месяцами, и уже не верится что что-то изменится.</div>
+  </div>
+</div>
+
+<hr class="divider" />
+
+<!-- WHAT -->
+<div class="section">
+  <div class="section-label">Что это такое</div>
+  <h2>Работаем с твоим опытом<br>и твоим рынком</h2>
+  <div class="what-row">
+    <div class="what-text">
+      <p>
+        CV-LAB — это индивидуальная работа с твоим конкретным опытом и конкретным рынком.
+        Я не подгоняю тебя под шаблон — мы выстраиваем позиционирование под то,
+        что ты реально умеешь делать лучше всего.
+      </p>
+      <p>
+        В конце у тебя не просто «обновлённое резюме», а понимание:
+        куда идти, как себя представить, что делать дальше.
+        И система поиска, которую можно настраивать по результату.
+      </p>
+    </div>
+    <div class="what-aside">
+      <div class="aside-card">
+        <div class="num">~5 нед</div>
+        <div class="lbl">от разбора ситуации до первых откликов</div>
+      </div>
+      <div class="aside-card">
+        <div class="num">1 на 1</div>
+        <div class="lbl">никаких потоков и групп — только твоя ситуация</div>
+      </div>
+      <div class="aside-card">
+        <div class="num">0 шаблонов</div>
+        <div class="lbl">всё собирается под твой опыт и твой рынок</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider" />
+
+<!-- STEPS — main block -->
+<div class="section" id="steps">
+  <div class="steps-intro">
+    <div class="steps-intro-left">
+      <div class="section-label">Как мы работаем</div>
+      <h2>Что мы делаем<br>вместе</h2>
+      <p class="section-sub" style="margin-bottom: 0;">
+        Каждый этап делает следующий точнее. В процессе работы ты всегда знаешь, где мы находимся.
+      </p>
+    </div>
+    <div class="steps-intro-right">
+      <span class="dot-me">●</span> делаю я &nbsp; <span class="dot-you">●</span> делаешь ты
+    </div>
+  </div>
+
+  <div class="steps">
+
+    <div class="step">
+      <div class="step-num-wrap"><div class="step-num">01</div></div>
+      <div>
+        <div class="step-head">
+          <div class="step-title">Разбираемся что происходит</div>
+          <div class="step-time">1–2 дня</div>
+        </div>
+        <p class="step-desc">
+          Начинаем с короткого разговора — ты рассказываешь что происходит с поиском,
+          чего хочешь достичь. Я смотрю на ситуацию честно и говорю, могу ли помочь и как.
+          Это не собеседование — просто разговор.
+        </p>
+        <div class="step-who">
+          <span><span class="dot-you">●</span> рассказываешь о ситуации</span>
+          <span><span class="dot-me">●</span> слушаю и формулирую первые гипотезы</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num-wrap"><div class="step-num">02</div></div>
+      <div>
+        <div class="step-head">
+          <div class="step-title">Смотрим где именно буксует</div>
+          <div class="step-time">2–3 дня</div>
+        </div>
+        <p class="step-desc">
+          Смотрю твоё резюме, LinkedIn, историю откликов — глазами рекрутера.
+          Нахожу где именно теряются кандидаты в твоей ситуации: неточная формулировка,
+          не тот сигнал, не та аудитория. Это основа для всего дальнейшего.
+        </p>
+        <div class="step-who">
+          <span><span class="dot-you">●</span> даёшь материалы</span>
+          <span><span class="dot-me">●</span> анализирую и выдаю диагноз</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num-wrap"><div class="step-num">03</div></div>
+      <div>
+        <div class="step-head">
+          <div class="step-title">Достаём сильные стороны наружу</div>
+          <div class="step-time">1–2 недели</div>
+        </div>
+        <p class="step-desc">
+          Задаю тебе серию вопросов — вытаскиваем то, что ты делал, но никогда не формулировал чётко.
+          Люди с опытом 5–15 лет часто недооценивают свои достижения или не умеют о них говорить.
+          Собираем конкретные факты, цифры, результаты — только правду, ничего придуманного.
+        </p>
+        <div class="step-who">
+          <span><span class="dot-you">●</span> отвечаешь на вопросы</span>
+          <span><span class="dot-me">●</span> структурирую и проверяю через анализ рынка</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num-wrap"><div class="step-num">04</div></div>
+      <div>
+        <div class="step-head">
+          <div class="step-title">Формулируем кто ты для рынка</div>
+          <div class="step-time">2–3 дня</div>
+        </div>
+        <p class="step-desc">
+          Анализирую реальные вакансии твоего уровня — каким языком рынок описывает таких
+          специалистов, что ищут компании. Потом переводим твой опыт на этот язык.
+          Итог: одна чёткая позиция — кто ты, что умеешь, куда идёшь. Ты её утверждаешь.
+        </p>
+        <div class="step-who">
+          <span><span class="dot-you">●</span> выбираешь 5–7 вакансий которые реально интересны</span>
+          <span><span class="dot-me">●</span> строю позиционирование через анализ JD</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num-wrap"><div class="step-num">05</div></div>
+      <div>
+        <div class="step-head">
+          <div class="step-title">Пишем резюме и LinkedIn</div>
+          <div class="step-time">1–2 недели</div>
+        </div>
+        <p class="step-desc">
+          Пишем резюме и LinkedIn под конкретную роль — не красивое, а работающее.
+          Структура, формулировки, ключевые слова — всё проверяется на реальных вакансиях.
+          Ты видишь каждый шаг, утверждаешь финальную версию.
+        </p>
+        <div class="step-who">
+          <span><span class="dot-you">●</span> проверяешь и правишь</span>
+          <span><span class="dot-me">●</span> пишу и итерирую</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num-wrap"><div class="step-num">06</div></div>
+      <div>
+        <div class="step-head">
+          <div class="step-title">Запускаем поиск и смотрим что работает</div>
+          <div class="step-time">по результату</div>
+        </div>
+        <p class="step-desc">
+          Запускаем первую волну точечных откликов. Через 2–3 недели смотрим на цифры:
+          где читают, где нет, что нужно подкрутить. Поиск — не лотерея.
+          Это система, которую мы настраиваем по ходу.
+        </p>
+        <div class="step-who">
+          <span><span class="dot-you">●</span> откликаешься</span>
+          <span><span class="dot-me">●</span> анализирую воронку и корректирую стратегию</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<hr class="divider" />
+
+<!-- AI -->
+<div class="section">
+  <div class="ai-section">
+    <div>
+      <div class="section-label">AI-first подход</div>
+      <h3>Работаю с AI — это меняет скорость и глубину</h3>
+      <p>
+        AI — мой основной инструмент работы: анализ рынка, разбор вакансий, поиск формулировок.
+        Не вместо меня — вместе со мной.
+      </p>
+      <p>
+        За счёт этого я делаю за 2–3 дня то, что раньше занимало неделю.
+        А ты получаешь больше итераций, точнее и быстрее.
+      </p>
+    </div>
+    <div class="ai-points">
+      <div class="ai-point"><span class="mark">✦</span>Анализирую 10–20 реальных вакансий под твой профиль — не вручную, глубоко</div>
+      <div class="ai-point"><span class="mark">✦</span>Нахожу паттерны и формулировки которые реально используют на твоём рынке</div>
+      <div class="ai-point"><span class="mark">✦</span>Правлю резюме и позиционирование быстро — ты не ждёшь неделями</div>
+      <div class="ai-point"><span class="mark">✦</span>Всё прозрачно — ты видишь логику каждого решения</div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider" />
+
+<!-- CTA -->
+<div class="section" id="contact">
+  <div class="cta-block">
+    <h2>Разберёмся<br>с твоей ситуацией</h2>
+    <p>
+      Начнём с короткого разговора — расскажешь что происходит,
+      я скажу как вижу и можно ли помочь. Ни к чему не обязывает.
+    </p>
+    <a href="https://t.me/Ksen_Kas?text=Привет!+Посмотрела+твою+страницу+—+хочу+разобраться+со+своим+поиском" class="btn-white" target="_blank">
+      Написать в Telegram
+    </a>
+    <div class="cta-note">обычно отвечаю в течение дня</div>
+  </div>
+</div>
+
+<footer>
+  CV·LAB &nbsp;·&nbsp; Ксения Касьянова &nbsp;·&nbsp; AI-first карьерный консалтинг
+</footer>
+
+</body>
+</html>
